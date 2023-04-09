@@ -15,13 +15,19 @@ const contracts = {
     1101: ["0x93395129bd3fcf49d95730D3C2737c17990fF328", "https://zkevm-rpc.com"],
 }
 
+const default_key = "ckey_72cd3b74b4a048c9bc671f7c5a6";
 async function run() {
+  let api_key = document.getElementById("api_key").textContent;
+  api_key.match(/ckey_[a-z|0-9]{27}/)
+    ? console.log("api_key is valid")
+    : (api_key = default_key);
+
     const addresses = document.getElementById("addresses").value.split("\n").map(a=>a.trim())
     Object.entries(contracts).forEach(async ([chainId, contract])=>{
         const provider = new ethers.providers.StaticJsonRpcProvider(contract[1])
         addresses.forEach(async address=>{
             try{
-                const tokens = await fetch(`https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/?&key=ckey_72cd3b74b4a048c9bc671f7c5a6`).then(r=>r.json())
+                const tokens = await fetch(`https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/?&key=${api_key}`).then(r=>r.json())
                 tokens.data.items.filter(t=>t.contract_address !== "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee").forEach(async token=>{
                     const tokenContract = new ethers.Contract(
                         token.contract_address,

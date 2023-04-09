@@ -12,17 +12,18 @@
 <body>
 
   <p>
-1) Enter all your addresses in the input field below separated by line breaks (one address on each line)<br>
-2) Click button
-</p>
+    0) Optional: Enter your own Covalent API Key if you get too many errors<br>
+    1) Enter all your addresses in the input field below separated by line breaks (one address on each line)<br>
+    2) Click button
+  </p>
 
-<textarea id="addresses" style="width:900px; height: 500px;"></textarea><br />
-<button onclick="run()">Run approval checks</button><br />
+  <textarea id="api_key" style="width:900px; height: 1rem;" placeholder="OPTIONAL: Covalent API Key"></textarea><br />
+  <textarea id="addresses" style="width:900px; height: 500px;"></textarea><br />
+  <button onclick="run()">Run approval checks</button><br />
 
-Output: <textarea id="output"></textarea>
+  Output: <textarea id="output"></textarea>
 
-  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
-        type="application/javascript"></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
   <script src="./script.js"></script>
 </body>
 
