@@ -33,7 +33,7 @@ async function run() {
                     try{
                     const allowance = await tokenContract.allowance(address, contract[0])
                     if(allowance > 0){
-                        document.getElementById("output").value += `You need to revoke ${token.contract_ticker_symbol} on chain with chainId ${chainId}\n`
+                        document.getElementById("output").value += `You need to revoke ${token.contract_ticker_symbol} on chain with chainId ${chainId} for address ${address}\n`
                     }
                     } catch(e){
                         console.log("allowance", e)
